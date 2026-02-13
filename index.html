@@ -3,135 +3,347 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>王氏羊肉串 | 新疆风味烧烤页</title>
-  <meta name="description" content="王氏羊肉串：按新疆羊肉串方法制作，含配方、火候和步骤。" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <title>中式烧烤 Recipes | 王氏羊肉串</title>
+  <meta name="description" content="中式烧烤菜谱合集：羊肉串、鸡翅、生蚝、烤茄子、五花肉串等。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #120f0c;
-      --paper: #1e1813;
-      --ink: #f7efe2;
-      --muted: #d5bfa1;
-      --hot: #ff6b00;
-      --fire: #ff3d00;
-      --line: #3a2e23;
+      --red: #e31b23;
+      --black: #151515;
+      --text: #222;
+      --muted: #666;
+      --line: #e7e7e7;
+      --bg: #f7f7f7;
+      --white: #fff;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      color: var(--ink);
       font-family: "Noto Sans SC", sans-serif;
-      background:
-        radial-gradient(1200px 500px at 80% -10%, #6e2a00 0%, transparent 60%),
-        radial-gradient(900px 400px at 10% 110%, #4d1b00 0%, transparent 60%),
-        var(--bg);
+      color: var(--text);
+      background: var(--bg);
     }
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 24px; }
-    .top {
-      display: flex; justify-content: space-between; align-items: center;
-      border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px;
-      background: rgba(30, 24, 19, 0.78);
+    .topbar {
+      background: var(--black);
+      color: #fff;
+      padding: 12px 20px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
     }
-    .brand { font-weight: 900; letter-spacing: 0.06em; }
-    .brand b { color: var(--hot); }
+    .brand {
+      font-family: "Montserrat", sans-serif;
+      letter-spacing: .04em;
+      font-weight: 800;
+    }
+    .brand b { color: var(--red); }
+    .container { max-width: 1120px; margin: 0 auto; padding: 20px; }
+
     .hero {
-      margin-top: 16px; border: 1px solid var(--line); border-radius: 18px; padding: 24px;
-      background: linear-gradient(130deg, rgba(255, 107, 0, .16), rgba(255, 61, 0, .08));
+      background: linear-gradient(140deg, #fff 0%, #fff 65%, #f0f0f0 100%);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      min-height: 300px;
     }
-    h1 { margin: .2em 0 .35em; font-size: clamp(30px, 6vw, 60px); line-height: 1.05; }
-    .sub { color: var(--muted); max-width: 780px; }
-    .tag { display: inline-block; border: 1px solid #8a623f; border-radius: 999px; padding: 6px 10px; margin-top: 10px; font-size: 13px; }
-    .gallery {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;
+    .hero-content { padding: 30px; }
+    .eyebrow {
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    h1 {
+      margin: 10px 0 12px;
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(28px, 5vw, 50px);
+      line-height: 1.05;
+    }
+    .hero p { color: var(--muted); max-width: 560px; }
+    .hero-meta {
       margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #fff1f1;
+      border: 1px solid #ffd1d2;
+      font-size: 13px;
     }
-    .gallery img {
-      width: 100%; height: 240px; object-fit: cover;
-      border: 1px solid var(--line); border-radius: 12px;
-      background: #2a2119;
+    .hero-image {
+      background-image: url("https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
     }
-    .panel {
-      margin-top: 16px; border: 1px solid var(--line); border-radius: 14px;
-      padding: 18px; background: var(--paper);
+
+    .section-title {
+      margin: 28px 0 14px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 24px;
+      letter-spacing: .02em;
     }
-    h2 { margin: .1em 0 .6em; font-size: 22px; }
-    ul, ol { margin: 0; padding-left: 20px; }
-    li { margin: 8px 0; color: #eadbc4; }
-    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .author {
-      margin-top: 16px; border: 1px dashed #8e6842; border-radius: 14px; padding: 16px;
-      background: rgba(255, 107, 0, 0.08);
-      display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
     }
-    .mono { font-family: "Fira Code", monospace; color: #ffbf75; }
-    .foot { margin: 18px 0 8px; color: #bda589; font-size: 13px; }
-    @media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+    .chip {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #333;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: .2s;
+    }
+    .chip:hover { border-color: #d0d0d0; }
+    .chip.active {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+
+    .featured {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      overflow: hidden;
+    }
+    .featured img {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+    .featured-content { padding: 22px; }
+    .badge {
+      display: inline-block;
+      border: 1px solid #ffd1d2;
+      color: #b50006;
+      background: #fff4f4;
+      font-size: 12px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .meta { color: #888; font-size: 13px; margin-bottom: 10px; }
+
+    .grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body { padding: 14px; }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card .small { font-size: 12px; color: #888; margin-bottom: 10px; }
+    .card p { margin: 0; color: #555; font-size: 14px; }
+    details { margin-top: 10px; }
+    summary {
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--red);
+      font-weight: 700;
+    }
+    .steps {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .footer {
+      margin: 24px 0 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .featured { grid-template-columns: 1fr; }
+      .hero-image { min-height: 220px; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="top">
-      <div class="brand"><b>王氏</b>羊肉串</div>
-      <div>新疆风味家庭烧烤页</div>
-    </header>
-
-    <section class="hero">
-      <div class="mono">XINJIANG.LAMB.SKEWER()</div>
-      <h1>王氏羊肉串</h1>
-      <p class="sub">按新疆羊肉串思路做：肉块要均匀、先盐后辣、孜然后撒、猛火快烤，外焦香内多汁。</p>
-      <span class="tag">署名：王氏羊肉串</span>
-    </section>
-
-    <section class="gallery">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Barbecued%20lamb%20sticks.jpg" alt="羊肉串烤制图" loading="lazy" />
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/%E6%96%B0%E7%96%86%E7%BE%8A%E8%82%89%E4%B8%B2.jpg" alt="新疆羊肉串" loading="lazy" />
-    </section>
-
-    <section class="two">
-      <article class="panel">
-        <h2>配料（4-5人）</h2>
-        <ul>
-          <li>羊腿肉或羊后臀肉 1kg（肥瘦 8:2）</li>
-          <li>洋葱丝 1 个（去腥增香）</li>
-          <li>盐 12-14g</li>
-          <li>孜然粒 10g + 孜然粉 6g</li>
-          <li>辣椒面 8-12g（按辣度调整）</li>
-          <li>白胡椒粉 2g、少量食用油</li>
-        </ul>
-      </article>
-      <article class="panel">
-        <h2>前处理</h2>
-        <ol>
-          <li>羊肉切 2.5-3cm 小方块，尽量大小一致。</li>
-          <li>加盐、白胡椒、洋葱丝抓匀，冷藏腌 30-90 分钟。</li>
-          <li>穿串时肥瘦间隔，避免全瘦肉导致发柴。</li>
-          <li>炭火分两区：强火区上色，次强火区走熟。</li>
-        </ol>
-      </article>
-    </section>
-
-    <section class="panel">
-      <h2>新疆羊肉串烤制步骤</h2>
-      <ol>
-        <li>先在强火区快速翻烤 30-45 秒，让表面定型并出油。</li>
-        <li>转次强火区继续烤，期间高频翻面，避免单面过焦。</li>
-        <li>七成熟时先撒盐，再撒孜然粒，最后撒辣椒面。</li>
-        <li>回强火区再烤 15-25 秒，逼出香味后立刻离火。</li>
-        <li>离火静置 30-60 秒再吃，肉汁更稳。</li>
-      </ol>
-    </section>
-
-    <section class="author">
-      <div>
-        <div><strong>出品署名：</strong>王氏羊肉串</div>
-        <div class="mono">Fusioneer Leo</div>
-      </div>
-      <div>网页制作：Fusioneer Leo（图形学工程师）</div>
-    </section>
-
-    <div class="foot">图片来源：Wikimedia Commons（在线直链）</div>
+  <div class="topbar">
+    <div class="brand"><b>WANG'S</b> BBQ RECIPES</div>
+    <div>署名：王氏羊肉串 | Fusioneer Leo</div>
   </div>
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">A Recipe For Every Grill Night</div>
+        <h1>中式烧烤 Recipes</h1>
+        <p>参考 Weber Recipes 页面结构做的中式版本。你可以按类别筛选菜谱，快速找到今晚要烤的菜单组合。</p>
+        <div class="hero-meta">Featured: 新疆炭烤羊肉串 · 25 分钟</div>
+      </div>
+      <div class="hero-image" aria-label="中式烧烤主视觉"></div>
+    </section>
+
+    <h2 class="section-title">选择分类</h2>
+    <div class="chips" id="chips">
+      <button class="chip active" data-filter="all">全部 Recipes</button>
+      <button class="chip" data-filter="串类">串类</button>
+      <button class="chip" data-filter="肉类">肉类</button>
+      <button class="chip" data-filter="海鲜">海鲜</button>
+      <button class="chip" data-filter="蔬菜">蔬菜</button>
+      <button class="chip" data-filter="主食">主食</button>
+    </div>
+
+    <section class="featured">
+      <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1400&q=80" alt="新疆羊肉串" loading="lazy" />
+      <div class="featured-content">
+        <div class="badge">Featured Recipe</div>
+        <h2 style="margin:0 0 8px;">王氏新疆羊肉串</h2>
+        <div class="meta">类别：串类 / 肉类 · 人数：4 · 时间：25 分钟</div>
+        <p>羊腿肉切 2.5cm 方块，肥瘦搭配穿串。先盐后孜然再辣椒，强火快烤高频翻面，外焦香、内多汁。</p>
+        <details>
+          <summary>查看步骤</summary>
+          <ol class="steps">
+            <li>羊腿肉 1kg，切块后加盐 12g、洋葱丝抓匀，腌 30-60 分钟。</li>
+            <li>炭火分强火区和中火区，先强火 40 秒定型。</li>
+            <li>转中火烤至七成熟，撒盐、孜然粒、辣椒面。</li>
+            <li>回强火 15 秒逼香，离火静置 30 秒再吃。</li>
+          </ol>
+        </details>
+      </div>
+    </section>
+
+    <h2 class="section-title">所有菜谱</h2>
+    <section class="grid" id="grid">
+      <article class="card" data-category="串类 肉类">
+        <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=1200&q=80" alt="孜然牛肉串" loading="lazy" />
+        <div class="card-body">
+          <h3>孜然牛肉串</h3>
+          <div class="small">串类 / 肉类 · 20 分钟</div>
+          <p>牛肩肉切块，黑胡椒与孜然粉打底，旺火快烤，出炉补一点海盐。</p>
+        </div>
+      </article>
+
+      <article class="card" data-category="肉类">
+        <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=1200&q=80" alt="蜜汁鸡翅" loading="lazy" />
+        <div class="card-body">
+          <h3>蜜汁蒜香鸡翅</h3>
+          <div class="small">肉类 · 35 分钟</div>
+          <p>生抽、蒜末、蜂蜜、少量蚝油腌制，先中火走熟，再高火上色。</p>
+        </div>
+      </article>
+
+      <article class="card" data-category="海鲜">
+        <img src="https://images.unsplash.com/photo-1559847844-d721426d6edc?auto=format&fit=crop&w=1200&q=80" alt="蒜蓉生蚝" loading="lazy" />
+        <div class="card-body">
+          <h3>蒜蓉生蚝</h3>
+          <div class="small">海鲜 · 18 分钟</div>
+          <p>蒜蓉小火炒香后加生抽与糖，淋在生蚝上，烤至边缘微沸即可。</p>
+        </div>
+      </article>
+
+      <article class="card" data-category="蔬菜">
+        <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1200&q=80" alt="蒜蓉烤茄子" loading="lazy" />
+        <div class="card-body">
+          <h3>蒜蓉烤茄子</h3>
+          <div class="small">蔬菜 · 22 分钟</div>
+          <p>整茄子先烤软再剖开，刷蒜蓉酱复烤，最后撒葱花与小米辣。</p>
+        </div>
+      </article>
+
+      <article class="card" data-category="肉类 串类">
+        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=1200&q=80" alt="五花肉串" loading="lazy" />
+        <div class="card-body">
+          <h3>脆边五花肉串</h3>
+          <div class="small">串类 / 肉类 · 24 分钟</div>
+          <p>薄切五花卷串，撒盐与辣椒粉，先逼油后脆化，口感更有层次。</p>
+        </div>
+      </article>
+
+      <article class="card" data-category="蔬菜">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="锡纸金针菇" loading="lazy" />
+        <div class="card-body">
+          <h3>锡纸金针菇</h3>
+          <div class="small">蔬菜 · 15 分钟</div>
+          <p>蒜末、生抽、少量黄油封入锡纸盒，中火焖烤，汤汁拌馒头很香。</p>
+        </div>
+      </article>
+
+      <article class="card" data-category="主食">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80" alt="烤馒头片" loading="lazy" />
+        <div class="card-body">
+          <h3>椒盐烤馒头片</h3>
+          <div class="small">主食 · 12 分钟</div>
+          <p>黄油薄刷，撒椒盐和孜然，小火烤到两面金黄酥脆。</p>
+        </div>
+      </article>
+
+      <article class="card" data-category="海鲜">
+        <img src="https://images.unsplash.com/photo-1559742811-822873691df8?auto=format&fit=crop&w=1200&q=80" alt="烤鱿鱼" loading="lazy" />
+        <div class="card-body">
+          <h3>炭烤鱿鱼</h3>
+          <div class="small">海鲜 · 16 分钟</div>
+          <p>鱿鱼改刀后加料酒和白胡椒腌制，烤后刷酱再烤 30 秒提香。</p>
+        </div>
+      </article>
+    </section>
+
+    <div class="footer">
+      <span>风格参考：Weber Recipes 页面（分类 + Featured + 卡片列表）</span>
+      <span>署名：王氏羊肉串 · Fusioneer Leo</span>
+    </div>
+  </div>
+
+  <script>
+    const chips = document.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('.card');
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chips.forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+
+        const filter = chip.dataset.filter;
+        cards.forEach((card) => {
+          const cat = card.dataset.category;
+          const show = filter === 'all' || cat.includes(filter);
+          card.style.display = show ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
