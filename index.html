@@ -311,6 +311,7 @@
       display: flex;
       flex-direction: column;
       transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+      cursor: pointer;
     }
     .card:hover {
       transform: translateY(-6px) scale(1.01);
@@ -353,6 +354,90 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 10px;
+    }
+    .recipe-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .recipe-modal.open { display: flex; }
+    .recipe-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(2px);
+    }
+    .recipe-dialog {
+      position: relative;
+      width: min(820px, 96vw);
+      max-height: 88vh;
+      overflow: auto;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      padding: 18px 18px 20px;
+      z-index: 1;
+    }
+    .recipe-close {
+      border: 1px solid #ddd;
+      background: #fff;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      cursor: pointer;
+      float: right;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .recipe-title {
+      margin: 4px 0 10px;
+      font-size: 28px;
+      font-family: "Montserrat", sans-serif;
+    }
+    .recipe-meta {
+      color: #7a7a7a;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 14px;
+    }
+    .recipe-card {
+      border: 1px solid #ececec;
+      border-radius: 10px;
+      padding: 12px;
+      background: #fafafa;
+    }
+    .recipe-card h4 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: #a30f15;
+    }
+    .recipe-card ul, .recipe-card ol {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .recipe-card li {
+      margin: 7px 0;
+      color: #444;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .recipe-tip {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #555;
+      background: #fff4f4;
+      border: 1px solid #ffdede;
+      border-radius: 10px;
+      padding: 9px 10px;
     }
     .reveal {
       opacity: 0;
@@ -415,6 +500,7 @@
     @media (max-width: 900px) {
       .hero, .featured { grid-template-columns: 1fr; }
       .hero-image { min-height: 220px; }
+      .recipe-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -445,7 +531,7 @@
     </div>
   </div>
   <div class="topbar">
-    <div class="brand"><b>WANG'S</b> BBQ RECIPES</div>
+    <div class="brand"><b>WONG'S</b> BBQ RECIPES</div>
     <div>
       署名：王氏羊肉串 | Fusioneer Leo |
       <a href="./hire.html" style="color:#fff;text-decoration:underline;">雇佣烧烤师</a>
@@ -484,7 +570,7 @@
       <img src="https://loremflickr.com/1400/900/lamb,skewer,grill?lock=11" alt="新疆羊肉串" loading="lazy" />
       <div class="featured-content">
         <div class="badge">Featured Recipe</div>
-        <h2 style="margin:0 0 8px;">王氏新疆羊肉串</h2>
+        <h2 style="margin:0 0 8px;">杨氏羊肉串</h2>
         <div class="meta">类别：串类 / 肉类 · 人数：4 · 时间：25 分钟</div>
         <p>羊腿肉切 2.5cm 方块，肥瘦搭配穿串。先盐后孜然再辣椒，强火快烤高频翻面，外焦香、内多汁。</p>
         <details>
@@ -520,7 +606,7 @@
       </article>
 
       <article class="card reveal" data-category="海鲜">
-        <img src="https://loremflickr.com/1200/800/oyster,grill,seafood?lock=14" alt="蒜蓉生蚝" loading="lazy" />
+        <img src="https://loremflickr.com/1200/800/grilled,oysters,seafood?lock=1414" alt="蒜蓉生蚝" loading="lazy" />
         <div class="card-body">
           <h3>蒜蓉生蚝</h3>
           <div class="small">海鲜 · 18 分钟</div>
@@ -574,7 +660,7 @@
       </article>
 
       <article class="card reveal" data-category="肉类">
-        <img src="https://loremflickr.com/1200/800/lamb,chop,grill?lock=31" alt="炭烤羊排" loading="lazy" />
+        <img src="https://loremflickr.com/1200/800/grilled,lamb,chops?lock=231" alt="炭烤羊排" loading="lazy" />
         <div class="card-body">
           <h3>炭烤羊排</h3>
           <div class="small">肉类 · 28 分钟</div>
@@ -583,7 +669,7 @@
       </article>
 
       <article class="card reveal" data-category="肉类">
-        <img src="https://loremflickr.com/1200/800/ribs,bbq,grill?lock=32" alt="秘制烤排骨" loading="lazy" />
+        <img src="https://loremflickr.com/1200/800/barbecue,ribs,cooked?lock=232" alt="秘制烤排骨" loading="lazy" />
         <div class="card-body">
           <h3>秘制烤排骨</h3>
           <div class="small">肉类 · 40 分钟</div>
@@ -592,7 +678,7 @@
       </article>
 
       <article class="card reveal" data-category="海鲜">
-        <img src="https://loremflickr.com/1200/800/shrimp,skewer,grill?lock=33" alt="蒜香虾串" loading="lazy" />
+        <img src="https://loremflickr.com/1200/800/grilled,shrimp,skewers?lock=233" alt="蒜香虾串" loading="lazy" />
         <div class="card-body">
           <h3>蒜香虾串</h3>
           <div class="small">海鲜 · 14 分钟</div>
@@ -601,7 +687,7 @@
       </article>
 
       <article class="card reveal" data-category="海鲜">
-        <img src="https://loremflickr.com/1200/800/fish,grill,seafood?lock=34" alt="柠檬烤鱼柳" loading="lazy" />
+        <img src="https://loremflickr.com/1200/800/grilled,fish,fillet?lock=234" alt="柠檬烤鱼柳" loading="lazy" />
         <div class="card-body">
           <h3>柠檬烤鱼柳</h3>
           <div class="small">海鲜 · 18 分钟</div>
@@ -610,7 +696,7 @@
       </article>
 
       <article class="card reveal" data-category="蔬菜">
-        <img src="https://loremflickr.com/1200/800/pepper,vegetable,grill?lock=35" alt="烤彩椒拼盘" loading="lazy" />
+        <img src="https://loremflickr.com/1200/800/grilled,bell,peppers?lock=235" alt="烤彩椒拼盘" loading="lazy" />
         <div class="card-body">
           <h3>烤彩椒拼盘</h3>
           <div class="small">蔬菜 · 12 分钟</div>
@@ -619,7 +705,7 @@
       </article>
 
       <article class="card reveal" data-category="蔬菜">
-        <img src="https://loremflickr.com/1200/800/corn,grill,vegetable?lock=36" alt="黄油烤玉米" loading="lazy" />
+        <img src="https://loremflickr.com/1200/800/grilled,corn?lock=236" alt="黄油烤玉米" loading="lazy" />
         <div class="card-body">
           <h3>黄油烤玉米</h3>
           <div class="small">蔬菜 · 15 分钟</div>
@@ -628,7 +714,7 @@
       </article>
 
       <article class="card reveal" data-category="蔬菜">
-        <img src="https://loremflickr.com/1200/800/potato,grill,vegetable?lock=37" alt="孜然烤土豆片" loading="lazy" />
+        <img src="https://loremflickr.com/1200/800/roasted,potatoes,cooked?lock=237" alt="孜然烤土豆片" loading="lazy" />
         <div class="card-body">
           <h3>孜然烤土豆片</h3>
           <div class="small">蔬菜 · 20 分钟</div>
@@ -637,7 +723,7 @@
       </article>
 
       <article class="card reveal" data-category="主食">
-        <img src="https://loremflickr.com/1200/800/rice,cake,grill?lock=38" alt="酱烤年糕串" loading="lazy" />
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tteok-kkochi%202.jpg" alt="酱烤年糕串" loading="lazy" />
         <div class="card-body">
           <h3>酱烤年糕串</h3>
           <div class="small">主食 · 16 分钟</div>
@@ -646,7 +732,7 @@
       </article>
 
       <article class="card reveal" data-category="主食">
-        <img src="https://loremflickr.com/1200/800/noodle,grill,food?lock=39" alt="铁板烤面筋" loading="lazy" />
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/BBQ%20Seitan%20Vegan%20Food%20Plate.jpg" alt="铁板烤面筋" loading="lazy" />
         <div class="card-body">
           <h3>铁板烤面筋</h3>
           <div class="small">主食 · 13 分钟</div>
@@ -655,7 +741,7 @@
       </article>
 
       <article class="card reveal" data-category="串类 肉类">
-        <img src="https://loremflickr.com/1200/800/chicken,skewer,grill?lock=40" alt="香辣鸡腿肉串" loading="lazy" />
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Skewer%20with%20marinated%20chicken%20wings%20bbq%20barbeque.jpg" alt="香辣鸡腿肉串" loading="lazy" />
         <div class="card-body">
           <h3>香辣鸡腿肉串</h3>
           <div class="small">串类 / 肉类 · 22 分钟</div>
@@ -670,10 +756,191 @@
     </div>
   </div>
 
+  <div class="recipe-modal" id="recipeModal" aria-hidden="true">
+    <div class="recipe-backdrop" id="recipeBackdrop"></div>
+    <section class="recipe-dialog" role="dialog" aria-modal="true" aria-labelledby="recipeTitle">
+      <button class="recipe-close" id="recipeClose" aria-label="关闭教程">×</button>
+      <h3 class="recipe-title" id="recipeTitle"></h3>
+      <div class="recipe-meta" id="recipeMeta"></div>
+      <div class="recipe-grid">
+        <div class="recipe-card">
+          <h4>配料与腌制</h4>
+          <ul id="recipeIngredients"></ul>
+        </div>
+        <div class="recipe-card">
+          <h4>详细步骤</h4>
+          <ol id="recipeSteps"></ol>
+          <div class="recipe-tip" id="recipeTip"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <script>
     const chips = document.querySelectorAll('.chip');
     const cards = document.querySelectorAll('.card');
     const revealNodes = document.querySelectorAll('.reveal');
+    const featured = document.querySelector('.featured');
+    const recipeModal = document.getElementById('recipeModal');
+    const recipeBackdrop = document.getElementById('recipeBackdrop');
+    const recipeClose = document.getElementById('recipeClose');
+    const recipeTitle = document.getElementById('recipeTitle');
+    const recipeMeta = document.getElementById('recipeMeta');
+    const recipeIngredients = document.getElementById('recipeIngredients');
+    const recipeSteps = document.getElementById('recipeSteps');
+    const recipeTip = document.getElementById('recipeTip');
+
+    const recipeMap = {
+      "杨氏羊肉串": {
+        meta: "串类 / 肉类 · 4人份 · 25分钟",
+        ingredients: ["羊腿肉 1kg（肥瘦搭配）", "洋葱丝 1个", "盐 12g", "孜然粒 8g", "辣椒面 8g", "少量食用油"],
+        steps: ["羊肉切 2.5cm 方块，和洋葱丝、盐抓匀冷藏 30-60 分钟。", "炭火分强火区与中火区，先强火快速定型。", "转中火烤至七成熟，均匀撒盐和孜然粒。", "最后撒辣椒面回强火 15 秒逼香，离火静置 30 秒。"],
+        tip: "关键是高频翻面，避免局部过焦。"
+      },
+      "孜然牛肉串": {
+        meta: "串类 / 肉类 · 20分钟",
+        ingredients: ["牛肩肉 700g", "盐 8g", "黑胡椒 3g", "孜然粉 5g", "蒜粉 2g", "食用油 1汤匙"],
+        steps: ["牛肉切块后加入盐、黑胡椒、蒜粉抓匀腌 25 分钟。", "穿串后先大火封边 30 秒。", "中火翻烤 3-4 分钟至熟。", "出炉前撒孜然粉和少量海盐。"],
+        tip: "牛肉不要腌太久，防止出水发柴。"
+      },
+      "蜜汁蒜香鸡翅": {
+        meta: "肉类 · 35分钟",
+        ingredients: ["鸡中翅 12个", "生抽 2汤匙", "蜂蜜 1汤匙", "蒜末 1汤匙", "蚝油 1汤匙", "白胡椒少许"],
+        steps: ["鸡翅划刀，和调味料拌匀腌 40 分钟。", "先中火烤 8-10 分钟走熟。", "刷一层蜂蜜酱，转高火上色。", "两面焦糖化后即可。"],
+        tip: "蜂蜜后刷，避免前期焦黑。"
+      },
+      "蒜蓉生蚝": {
+        meta: "海鲜 · 18分钟",
+        ingredients: ["生蚝 10只", "蒜末 2汤匙", "生抽 1汤匙", "糖 1茶匙", "葱花少许"],
+        steps: ["蒜末小火炒香，加生抽和糖调成蒜蓉汁。", "生蚝上蒜蓉汁摆上烤网。", "中高火烤至边缘微沸。", "出炉撒葱花，趁热食用。"],
+        tip: "生蚝微沸即可，过火会老。"
+      },
+      "蒜蓉烤茄子": {
+        meta: "蔬菜 · 22分钟",
+        ingredients: ["长茄子 2根", "蒜末 2汤匙", "生抽 1汤匙", "辣椒碎少许", "葱花少许"],
+        steps: ["茄子整根先烤到表皮发皱变软。", "剖开后刷蒜蓉酱。", "继续烤 3-4 分钟让蒜香渗入。", "最后撒葱花和辣椒碎。"],
+        tip: "第一段先把茄肉烤软是关键。"
+      },
+      "脆边五花肉串": {
+        meta: "串类 / 肉类 · 24分钟",
+        ingredients: ["五花肉薄片 800g", "盐 8g", "辣椒粉 4g", "孜然粉 3g", "白芝麻少许"],
+        steps: ["五花肉卷串后撒盐静置 15 分钟。", "中火慢烤逼油。", "转高火把边缘烤脆。", "出炉撒辣椒粉、孜然粉、芝麻。"],
+        tip: "先逼油后脆化，口感最好。"
+      },
+      "锡纸金针菇": {
+        meta: "蔬菜 · 15分钟",
+        ingredients: ["金针菇 300g", "蒜末 1汤匙", "生抽 1汤匙", "黄油 10g", "葱花少许"],
+        steps: ["金针菇入锡纸盒，加入蒜末、生抽和黄油。", "封口后中火焖烤 8 分钟。", "开盖再烤 2 分钟收香。", "撒葱花即可。"],
+        tip: "保留汤汁，用来蘸馒头片很香。"
+      },
+      "椒盐烤馒头片": {
+        meta: "主食 · 12分钟",
+        ingredients: ["馒头片 8片", "黄油 20g", "椒盐 适量", "孜然粉 少许"],
+        steps: ["馒头片两面薄刷黄油。", "小火慢烤至微黄。", "翻面继续烤到金黄酥脆。", "撒椒盐和孜然粉。"],
+        tip: "全程小火，避免表面焦苦。"
+      },
+      "炭烤鱿鱼": {
+        meta: "海鲜 · 16分钟",
+        ingredients: ["鱿鱼 2只", "料酒 1汤匙", "白胡椒 2g", "蒜蓉辣酱 1汤匙", "盐 少许"],
+        steps: ["鱿鱼改刀后与料酒、白胡椒腌 15 分钟。", "中高火烤至卷曲上色。", "刷蒜蓉辣酱再烤 30 秒。", "切段装盘。"],
+        tip: "鱿鱼熟得快，宁短勿长。"
+      },
+      "炭烤羊排": {
+        meta: "肉类 · 28分钟",
+        ingredients: ["羊排 1kg", "盐 10g", "黑胡椒 4g", "蒜泥 1汤匙", "迷迭香 少许"],
+        steps: ["羊排抹盐、黑胡椒和蒜泥，静置 30 分钟。", "先强火封边，再中火慢烤。", "期间刷少量油防干。", "出炉静置 3 分钟后切块。"],
+        tip: "带骨肉离火静置后更嫩。"
+      },
+      "秘制烤排骨": {
+        meta: "肉类 · 40分钟",
+        ingredients: ["排骨 1kg", "叉烧酱 2汤匙", "蜂蜜 1汤匙", "蒜末 1汤匙", "生抽 1汤匙"],
+        steps: ["排骨与调味料拌匀腌 1 小时。", "前段锡纸包裹中火焖烤 20 分钟。", "开盖刷酱高火收汁上色。", "表面焦亮后切段。"],
+        tip: "焖烤后再上色，熟度更稳定。"
+      },
+      "蒜香虾串": {
+        meta: "海鲜 · 14分钟",
+        ingredients: ["大虾 500g", "蒜泥 1汤匙", "黄油 15g", "盐 3g", "柠檬汁 少许"],
+        steps: ["虾去线后与蒜泥、盐抓匀。", "穿串后刷黄油。", "中高火每面各烤 1-2 分钟。", "出炉挤少许柠檬汁。"],
+        tip: "虾身变色卷起就可出炉。"
+      },
+      "柠檬烤鱼柳": {
+        meta: "海鲜 · 18分钟",
+        ingredients: ["白身鱼柳 600g", "盐 5g", "黑胡椒 3g", "黄油 15g", "柠檬 1个"],
+        steps: ["鱼柳撒盐和黑胡椒，静置 10 分钟。", "刷黄油后中火烤至两面金黄。", "离火前挤柠檬汁。", "静置 1 分钟再切。"],
+        tip: "鱼肉易碎，翻面用夹子托住。"
+      },
+      "烤彩椒拼盘": {
+        meta: "蔬菜 · 12分钟",
+        ingredients: ["红黄彩椒 各1个", "橄榄油 1汤匙", "盐 2g", "黑胡椒 少许"],
+        steps: ["彩椒切大片拌油和盐。", "高火短烤到边缘微焦。", "翻面再烤 1 分钟。", "撒黑胡椒即可。"],
+        tip: "保持脆感，不要烤塌。"
+      },
+      "黄油烤玉米": {
+        meta: "蔬菜 · 15分钟",
+        ingredients: ["玉米 3根", "黄油 20g", "椒盐 适量", "辣椒粉 少许"],
+        steps: ["玉米先蒸 5 分钟预熟。", "烤时刷黄油并不断转动。", "表面焦斑出现后撒椒盐。", "可按口味加辣椒粉。"],
+        tip: "先预熟可明显缩短烤制时间。"
+      },
+      "孜然烤土豆片": {
+        meta: "蔬菜 · 20分钟",
+        ingredients: ["土豆 3个", "盐 4g", "孜然粉 4g", "辣椒粉 2g", "油 1汤匙"],
+        steps: ["土豆切片后焯水 2 分钟。", "拌油上烤架中火烤。", "两面金黄后撒孜然和辣椒粉。", "再烤 30 秒出香。"],
+        tip: "先焯水可防外焦内生。"
+      },
+      "酱烤年糕串": {
+        meta: "主食 · 16分钟",
+        ingredients: ["年糕条 400g", "甜辣酱 1汤匙", "蒜蓉酱 1汤匙", "蜂蜜 半汤匙", "芝麻 少许"],
+        steps: ["年糕焯水后串签。", "薄刷甜辣酱烤 2 分钟。", "再刷蒜蓉酱继续翻烤。", "表面起泡后撒芝麻。"],
+        tip: "酱料分次薄刷，风味更干净。"
+      },
+      "铁板烤面筋": {
+        meta: "主食 · 13分钟",
+        ingredients: ["面筋串 8串", "孜然粉 4g", "辣椒面 3g", "蒜蓉酱 1汤匙", "芝麻 少许"],
+        steps: ["面筋改花刀更易入味。", "先刷蒜蓉酱中火烤。", "表面鼓泡后撒孜然和辣椒面。", "最后撒芝麻提香。"],
+        tip: "花刀深浅一致，受热更均匀。"
+      },
+      "香辣鸡腿肉串": {
+        meta: "串类 / 肉类 · 22分钟",
+        ingredients: ["鸡腿肉 800g", "盐 8g", "辣椒粉 5g", "蒜粉 2g", "孜然粉 3g", "油 1汤匙"],
+        steps: ["鸡腿肉切块与调料腌 35 分钟。", "先中火烤到变白定型。", "转高火快速上色。", "出炉前再撒一层辣椒粉。"],
+        tip: "鸡腿肉油脂高，适合快烤高温。"
+      }
+    };
+
+    function openRecipeModal(name) {
+      const data = recipeMap[name] || {
+        meta: "家常烧烤 · 约20分钟",
+        ingredients: ["主料 500g", "盐 适量", "辣椒和孜然 适量", "蒜末 适量"],
+        steps: ["切块并腌制 20 分钟。", "中高火翻烤至熟。", "分次调味后复烤上色。", "离火静置 30 秒即可食用。"],
+        tip: "控制火候比堆调料更重要。"
+      };
+
+      recipeTitle.textContent = name;
+      recipeMeta.textContent = data.meta;
+      recipeIngredients.innerHTML = "";
+      recipeSteps.innerHTML = "";
+      data.ingredients.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        recipeIngredients.appendChild(li);
+      });
+      data.steps.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        recipeSteps.appendChild(li);
+      });
+      recipeTip.textContent = "火候提示: " + data.tip;
+
+      recipeModal.classList.add("open");
+      recipeModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeRecipeModal() {
+      recipeModal.classList.remove("open");
+      recipeModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -685,6 +952,27 @@
     }, { threshold: 0.14 });
 
     revealNodes.forEach((node) => io.observe(node));
+
+    if (featured) {
+      featured.style.cursor = "pointer";
+      featured.addEventListener("click", (e) => {
+        if (e.target.closest("summary")) return;
+        openRecipeModal("杨氏羊肉串");
+      });
+    }
+
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const name = card.querySelector("h3")?.textContent?.trim() || "烧烤教程";
+        openRecipeModal(name);
+      });
+    });
+
+    recipeClose.addEventListener("click", closeRecipeModal);
+    recipeBackdrop.addEventListener("click", closeRecipeModal);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && recipeModal.classList.contains("open")) closeRecipeModal();
+    });
 
     chips.forEach((chip) => {
       chip.addEventListener('click', () => {
