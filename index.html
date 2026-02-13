@@ -33,65 +33,85 @@
       pointer-events: none;
       z-index: 0;
       overflow: hidden;
+      opacity: .92;
+    }
+    .fire-bg::before {
+      content: "";
+      position: absolute;
+      left: -8%;
+      right: -8%;
+      bottom: -20px;
+      height: 45vh;
+      background: linear-gradient(to top, rgba(255, 40, 0, 0.28), rgba(255, 120, 0, 0.12), rgba(255, 180, 0, 0));
+      filter: blur(16px);
+      animation: heatHaze 2.6s ease-in-out infinite alternate;
     }
     .embers {
       position: absolute;
       left: -10%;
       right: -10%;
-      bottom: -60px;
-      height: 180px;
+      bottom: -80px;
+      height: 250px;
       background:
-        radial-gradient(circle at 8% 60%, rgba(255, 120, 0, 0.35) 0, rgba(255, 120, 0, 0) 26%),
-        radial-gradient(circle at 22% 55%, rgba(255, 72, 0, 0.30) 0, rgba(255, 72, 0, 0) 24%),
-        radial-gradient(circle at 38% 65%, rgba(255, 165, 0, 0.28) 0, rgba(255, 165, 0, 0) 24%),
-        radial-gradient(circle at 55% 62%, rgba(255, 90, 0, 0.34) 0, rgba(255, 90, 0, 0) 28%),
-        radial-gradient(circle at 73% 58%, rgba(255, 130, 0, 0.30) 0, rgba(255, 130, 0, 0) 24%),
-        radial-gradient(circle at 88% 64%, rgba(255, 70, 0, 0.32) 0, rgba(255, 70, 0, 0) 24%);
-      filter: blur(10px);
-      animation: emberShift 4.4s ease-in-out infinite alternate;
+        radial-gradient(circle at 5% 70%, rgba(255, 90, 0, 0.60) 0, rgba(255, 90, 0, 0) 28%),
+        radial-gradient(circle at 16% 63%, rgba(255, 140, 0, 0.55) 0, rgba(255, 140, 0, 0) 30%),
+        radial-gradient(circle at 30% 72%, rgba(255, 65, 0, 0.58) 0, rgba(255, 65, 0, 0) 30%),
+        radial-gradient(circle at 43% 65%, rgba(255, 165, 0, 0.52) 0, rgba(255, 165, 0, 0) 30%),
+        radial-gradient(circle at 58% 73%, rgba(255, 75, 0, 0.60) 0, rgba(255, 75, 0, 0) 32%),
+        radial-gradient(circle at 72% 64%, rgba(255, 130, 0, 0.52) 0, rgba(255, 130, 0, 0) 30%),
+        radial-gradient(circle at 86% 71%, rgba(255, 55, 0, 0.56) 0, rgba(255, 55, 0, 0) 30%);
+      filter: blur(14px);
+      animation: emberShift 2.9s ease-in-out infinite alternate;
     }
     .flame {
       position: absolute;
-      bottom: -40px;
-      width: 150px;
-      height: 220px;
-      background: radial-gradient(ellipse at 50% 70%, rgba(255, 180, 80, 0.95) 0%, rgba(255, 95, 0, 0.9) 45%, rgba(255, 35, 0, 0.05) 75%);
-      border-radius: 45% 55% 45% 60%;
+      bottom: -70px;
+      width: 210px;
+      height: 340px;
+      background:
+        radial-gradient(ellipse at 48% 74%, rgba(255, 240, 170, 0.95) 0%, rgba(255, 190, 80, 0.88) 20%, rgba(255, 95, 0, 0.84) 52%, rgba(255, 40, 0, 0.05) 78%);
+      border-radius: 48% 52% 42% 58%;
       mix-blend-mode: screen;
-      filter: blur(3px);
-      opacity: .48;
+      filter: blur(4px);
+      opacity: .62;
       transform-origin: 50% 100%;
-      animation: flameRise 2.8s ease-in-out infinite;
+      animation: flameRise 1.95s ease-in-out infinite;
     }
-    .flame.f1 { left: 6%; animation-delay: 0s; }
-    .flame.f2 { left: 18%; width: 120px; height: 170px; animation-delay: .3s; opacity: .42; }
-    .flame.f3 { left: 33%; width: 135px; height: 190px; animation-delay: .6s; }
-    .flame.f4 { left: 50%; width: 170px; height: 240px; animation-delay: .2s; opacity: .52; }
-    .flame.f5 { left: 66%; width: 130px; height: 185px; animation-delay: .8s; }
-    .flame.f6 { left: 80%; width: 145px; height: 210px; animation-delay: .5s; opacity: .44; }
+    .flame.f1 { left: 2%;  width: 180px; height: 280px; animation-delay: .1s; }
+    .flame.f2 { left: 12%; width: 240px; height: 380px; animation-delay: .6s; }
+    .flame.f3 { left: 24%; width: 190px; height: 300px; animation-delay: .3s; }
+    .flame.f4 { left: 36%; width: 270px; height: 430px; animation-delay: 0s; opacity: .72; }
+    .flame.f5 { left: 50%; width: 220px; height: 360px; animation-delay: .45s; }
+    .flame.f6 { left: 63%; width: 260px; height: 410px; animation-delay: .2s; opacity: .70; }
+    .flame.f7 { left: 77%; width: 210px; height: 330px; animation-delay: .8s; }
+    .flame.f8 { left: 88%; width: 170px; height: 270px; animation-delay: .35s; }
     .sparks {
       position: absolute;
       inset: 0;
     }
     .spark {
       position: absolute;
-      bottom: -12px;
-      width: 4px;
-      height: 4px;
+      bottom: -24px;
+      width: 5px;
+      height: 5px;
       border-radius: 999px;
-      background: rgba(255, 200, 120, 0.95);
-      box-shadow: 0 0 8px rgba(255, 120, 0, 0.75);
+      background: rgba(255, 235, 170, 0.98);
+      box-shadow: 0 0 10px rgba(255, 115, 0, 0.95);
       animation: sparkFly linear infinite;
       opacity: 0;
     }
-    .spark.s1 { left: 10%; animation-duration: 2.8s; animation-delay: .2s; }
-    .spark.s2 { left: 22%; animation-duration: 2.2s; animation-delay: .8s; }
-    .spark.s3 { left: 29%; animation-duration: 3.1s; animation-delay: .4s; }
-    .spark.s4 { left: 42%; animation-duration: 2.6s; animation-delay: 1.1s; }
-    .spark.s5 { left: 54%; animation-duration: 2.9s; animation-delay: .5s; }
-    .spark.s6 { left: 63%; animation-duration: 2.4s; animation-delay: .9s; }
-    .spark.s7 { left: 76%; animation-duration: 3.0s; animation-delay: .3s; }
-    .spark.s8 { left: 88%; animation-duration: 2.5s; animation-delay: 1.2s; }
+    .spark.s1  { left: 6%;  animation-duration: 1.9s; animation-delay: .2s; }
+    .spark.s2  { left: 13%; animation-duration: 2.1s; animation-delay: .6s; }
+    .spark.s3  { left: 21%; animation-duration: 1.7s; animation-delay: .4s; }
+    .spark.s4  { left: 29%; animation-duration: 2.2s; animation-delay: .8s; }
+    .spark.s5  { left: 38%; animation-duration: 1.8s; animation-delay: .1s; }
+    .spark.s6  { left: 47%; animation-duration: 2.0s; animation-delay: .7s; }
+    .spark.s7  { left: 56%; animation-duration: 1.9s; animation-delay: .3s; }
+    .spark.s8  { left: 64%; animation-duration: 2.1s; animation-delay: 1.0s; }
+    .spark.s9  { left: 73%; animation-duration: 1.8s; animation-delay: .5s; }
+    .spark.s10 { left: 81%; animation-duration: 2.0s; animation-delay: .9s; }
+    .spark.s11 { left: 89%; animation-duration: 1.7s; animation-delay: .25s; }
+    .spark.s12 { left: 95%; animation-duration: 2.2s; animation-delay: 1.1s; }
     body::before {
       content: "";
       position: fixed;
@@ -356,21 +376,21 @@
       to { transform: translate3d(-18px, 20px, 0) scale(1.08); }
     }
     @keyframes emberShift {
-      from { transform: translateX(-1.5%) scaleX(1); opacity: .95; }
-      to { transform: translateX(1.5%) scaleX(1.02); opacity: .75; }
+      from { transform: translateX(-2.4%) scaleX(1) translateY(0); opacity: .95; }
+      to { transform: translateX(2.4%) scaleX(1.05) translateY(-8px); opacity: .78; }
     }
     @keyframes flameRise {
       0% {
-        transform: translateY(0) scaleY(.95) rotate(-3deg);
-        opacity: .35;
+        transform: translateY(0) scale(0.92, 0.9) rotate(-4deg);
+        opacity: .42;
       }
-      45% {
-        transform: translateY(-10px) scaleY(1.04) rotate(2deg);
-        opacity: .55;
+      40% {
+        transform: translateY(-38px) scale(1.04, 1.18) rotate(3deg);
+        opacity: .82;
       }
       100% {
-        transform: translateY(-4px) scaleY(.98) rotate(-1deg);
-        opacity: .38;
+        transform: translateY(-16px) scale(0.98, 1.03) rotate(-2deg);
+        opacity: .56;
       }
     }
     @keyframes sparkFly {
@@ -378,11 +398,15 @@
         transform: translate3d(0, 0, 0) scale(1);
         opacity: 0;
       }
-      14% { opacity: .95; }
+      12% { opacity: .95; }
       100% {
-        transform: translate3d(20px, -240px, 0) scale(.3);
+        transform: translate3d(30px, -420px, 0) scale(.2);
         opacity: 0;
       }
+    }
+    @keyframes heatHaze {
+      from { transform: scaleY(1) skewX(0deg); opacity: .45; }
+      to { transform: scaleY(1.08) skewX(1deg); opacity: .62; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -403,6 +427,8 @@
     <div class="flame f4"></div>
     <div class="flame f5"></div>
     <div class="flame f6"></div>
+    <div class="flame f7"></div>
+    <div class="flame f8"></div>
     <div class="sparks">
       <span class="spark s1"></span>
       <span class="spark s2"></span>
@@ -412,6 +438,10 @@
       <span class="spark s6"></span>
       <span class="spark s7"></span>
       <span class="spark s8"></span>
+      <span class="spark s9"></span>
+      <span class="spark s10"></span>
+      <span class="spark s11"></span>
+      <span class="spark s12"></span>
     </div>
   </div>
   <div class="topbar">
@@ -540,6 +570,96 @@
           <h3>炭烤鱿鱼</h3>
           <div class="small">海鲜 · 16 分钟</div>
           <p>鱿鱼改刀后加料酒和白胡椒腌制，烤后刷酱再烤 30 秒提香。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="肉类">
+        <img src="https://loremflickr.com/1200/800/lamb,chop,grill?lock=31" alt="炭烤羊排" loading="lazy" />
+        <div class="card-body">
+          <h3>炭烤羊排</h3>
+          <div class="small">肉类 · 28 分钟</div>
+          <p>迷迭香、蒜泥和海盐简单腌制，先封边后慢烤，骨边肉更香。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="肉类">
+        <img src="https://loremflickr.com/1200/800/ribs,bbq,grill?lock=32" alt="秘制烤排骨" loading="lazy" />
+        <div class="card-body">
+          <h3>秘制烤排骨</h3>
+          <div class="small">肉类 · 40 分钟</div>
+          <p>蜂蜜、叉烧酱和蒜末调酱，前段锡纸焖烤，后段开盖收汁上色。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="海鲜">
+        <img src="https://loremflickr.com/1200/800/shrimp,skewer,grill?lock=33" alt="蒜香虾串" loading="lazy" />
+        <div class="card-body">
+          <h3>蒜香虾串</h3>
+          <div class="small">海鲜 · 14 分钟</div>
+          <p>鲜虾去线后以黄油蒜泥腌 10 分钟，快速翻烤，保持弹嫩口感。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="海鲜">
+        <img src="https://loremflickr.com/1200/800/fish,grill,seafood?lock=34" alt="柠檬烤鱼柳" loading="lazy" />
+        <div class="card-body">
+          <h3>柠檬烤鱼柳</h3>
+          <div class="small">海鲜 · 18 分钟</div>
+          <p>鱼柳撒盐和黑胡椒，刷柠檬黄油，外皮微焦时挤柠檬汁提鲜。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="蔬菜">
+        <img src="https://loremflickr.com/1200/800/pepper,vegetable,grill?lock=35" alt="烤彩椒拼盘" loading="lazy" />
+        <div class="card-body">
+          <h3>烤彩椒拼盘</h3>
+          <div class="small">蔬菜 · 12 分钟</div>
+          <p>红黄彩椒切大片，橄榄油和海盐轻拌，高温快烤保留脆甜。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="蔬菜">
+        <img src="https://loremflickr.com/1200/800/corn,grill,vegetable?lock=36" alt="黄油烤玉米" loading="lazy" />
+        <div class="card-body">
+          <h3>黄油烤玉米</h3>
+          <div class="small">蔬菜 · 15 分钟</div>
+          <p>刷黄油后撒椒盐和辣椒粉，边烤边转，玉米粒焦香爆甜。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="蔬菜">
+        <img src="https://loremflickr.com/1200/800/potato,grill,vegetable?lock=37" alt="孜然烤土豆片" loading="lazy" />
+        <div class="card-body">
+          <h3>孜然烤土豆片</h3>
+          <div class="small">蔬菜 · 20 分钟</div>
+          <p>土豆片先焯后烤，撒孜然和辣椒面，外脆内糯，越吃越上头。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="主食">
+        <img src="https://loremflickr.com/1200/800/rice,cake,grill?lock=38" alt="酱烤年糕串" loading="lazy" />
+        <div class="card-body">
+          <h3>酱烤年糕串</h3>
+          <div class="small">主食 · 16 分钟</div>
+          <p>年糕串刷甜辣酱和蒜蓉酱，反复薄刷薄烤，表面起泡最香。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="主食">
+        <img src="https://loremflickr.com/1200/800/noodle,grill,food?lock=39" alt="铁板烤面筋" loading="lazy" />
+        <div class="card-body">
+          <h3>铁板烤面筋</h3>
+          <div class="small">主食 · 13 分钟</div>
+          <p>面筋改刀后刷酱烤至鼓泡，撒孜然和芝麻，口感筋道有嚼劲。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="串类 肉类">
+        <img src="https://loremflickr.com/1200/800/chicken,skewer,grill?lock=40" alt="香辣鸡腿肉串" loading="lazy" />
+        <div class="card-body">
+          <h3>香辣鸡腿肉串</h3>
+          <div class="small">串类 / 肉类 · 22 分钟</div>
+          <p>鸡腿肉加辣椒粉和蒜粉腌制后串烤，油脂丰盈，香辣多汁。</p>
         </div>
       </article>
     </section>
