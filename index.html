@@ -3,126 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>炭火实验室 | 烧烤指南</title>
-  <meta name="description" content="从选肉、控火到调味，一页搞懂家庭烧烤。" />
+  <title>王氏羊肉串 | 新疆风味烧烤页</title>
+  <meta name="description" content="王氏羊肉串：按新疆羊肉串方法制作，含配方、火候和步骤。" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#13100d;
-      --paper:#201a14;
-      --ink:#f9f3ea;
-      --muted:#d2bfa5;
-      --hot:#ff6a00;
-      --fire:#ff3d00;
-      --ember:#ffbd59;
-      --line:#3a2f24;
+    :root {
+      --bg: #120f0c;
+      --paper: #1e1813;
+      --ink: #f7efe2;
+      --muted: #d5bfa1;
+      --hot: #ff6b00;
+      --fire: #ff3d00;
+      --line: #3a2e23;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      color:var(--ink);
-      font-family:"Noto Sans SC",sans-serif;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Noto Sans SC", sans-serif;
       background:
-        radial-gradient(1200px 500px at 80% -10%, #6a2800 0%, transparent 60%),
-        radial-gradient(900px 400px at 10% 110%, #4f1c00 0%, transparent 60%),
+        radial-gradient(1200px 500px at 80% -10%, #6e2a00 0%, transparent 60%),
+        radial-gradient(900px 400px at 10% 110%, #4d1b00 0%, transparent 60%),
         var(--bg);
-      min-height:100vh;
     }
-    .grill-lines{
-      position:fixed;inset:0;pointer-events:none;opacity:.15;
-      background:repeating-linear-gradient(90deg,transparent 0 24px,#000 24px 26px);
-      mix-blend-mode:soft-light;
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 24px; }
+    .top {
+      display: flex; justify-content: space-between; align-items: center;
+      border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px;
+      background: rgba(30, 24, 19, 0.78);
     }
-    .wrap{max-width:1024px;margin:0 auto;padding:24px}
-    .top{
-      display:flex;justify-content:space-between;align-items:center;
-      border:1px solid var(--line);border-radius:14px;padding:14px 18px;
-      background:rgba(32,26,20,.75);backdrop-filter: blur(6px);
+    .brand { font-weight: 900; letter-spacing: 0.06em; }
+    .brand b { color: var(--hot); }
+    .hero {
+      margin-top: 16px; border: 1px solid var(--line); border-radius: 18px; padding: 24px;
+      background: linear-gradient(130deg, rgba(255, 107, 0, .16), rgba(255, 61, 0, .08));
     }
-    .logo{font-weight:900;letter-spacing:.08em}
-    .logo b{color:var(--hot)}
-    .hero{
-      margin-top:18px;border:1px solid var(--line);border-radius:18px;padding:28px;
-      background:linear-gradient(130deg,rgba(255,106,0,.14),rgba(255,61,0,.08),rgba(255,189,89,.07));
-      animation:rise .75s ease both;
+    h1 { margin: .2em 0 .35em; font-size: clamp(30px, 6vw, 60px); line-height: 1.05; }
+    .sub { color: var(--muted); max-width: 780px; }
+    .tag { display: inline-block; border: 1px solid #8a623f; border-radius: 999px; padding: 6px 10px; margin-top: 10px; font-size: 13px; }
+    .gallery {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;
+      margin-top: 16px;
     }
-    h1{font-size:clamp(30px,6vw,62px);line-height:1.05;margin:.2em 0 .4em}
-    .subtitle{color:var(--muted);max-width:680px}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-    .chips span{
-      border:1px solid #7a5837;background:#2a2119;padding:6px 10px;border-radius:999px;
-      font-family:"Fira Code",monospace;font-size:12px;
+    .gallery img {
+      width: 100%; height: 240px; object-fit: cover;
+      border: 1px solid var(--line); border-radius: 12px;
+      background: #2a2119;
     }
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:18px}
-    .card{
-      border:1px solid var(--line);border-radius:14px;padding:16px;
-      background:var(--paper);transform:translateY(10px);opacity:0;
-      animation:fade .6s ease forwards;
+    .panel {
+      margin-top: 16px; border: 1px solid var(--line); border-radius: 14px;
+      padding: 18px; background: var(--paper);
     }
-    .card:nth-child(2){animation-delay:.12s}
-    .card:nth-child(3){animation-delay:.24s}
-    .card:nth-child(4){animation-delay:.36s}
-    h2{font-size:20px;margin:.1em 0 .5em}
-    p{margin:0;color:#e8dbc8}
-    .cta{
-      margin-top:18px;border:1px dashed #8a633d;border-radius:14px;padding:16px;
-      background:rgba(255,106,0,.08)
+    h2 { margin: .1em 0 .6em; font-size: 22px; }
+    ul, ol { margin: 0; padding-left: 20px; }
+    li { margin: 8px 0; color: #eadbc4; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .author {
+      margin-top: 16px; border: 1px dashed #8e6842; border-radius: 14px; padding: 16px;
+      background: rgba(255, 107, 0, 0.08);
+      display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
     }
-    .btn{
-      margin-top:12px;display:inline-block;border:0;background:linear-gradient(90deg,var(--hot),var(--fire));
-      color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700
-    }
-    .footer{margin:24px 0 8px;color:#bfa98d;font-size:13px}
-    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-    @keyframes fade{to{opacity:1;transform:none}}
+    .mono { font-family: "Fira Code", monospace; color: #ffbf75; }
+    .foot { margin: 18px 0 8px; color: #bda589; font-size: 13px; }
+    @media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <div class="grill-lines"></div>
   <div class="wrap">
     <header class="top">
-      <div class="logo"><b>炭火</b>实验室</div>
-      <div>家庭烧烤一页指南</div>
+      <div class="brand"><b>王氏</b>羊肉串</div>
+      <div>新疆风味家庭烧烤页</div>
     </header>
 
     <section class="hero">
-      <div style="font-family:'Fira Code',monospace;color:var(--ember)">BBQ.START()</div>
-      <h1>把火候控制住，
-        烧烤就成了。</h1>
-      <p class="subtitle">这是一张给新手的速查表：先控火，再上肉；先薄盐，再补酱；先切逆纹，再入口。流程对了，味道就稳定。</p>
-      <div class="chips">
-        <span>两区火力</span><span>腌制 30-120 分钟</span><span>中心温度优先</span><span>静置 5 分钟</span>
+      <div class="mono">XINJIANG.LAMB.SKEWER()</div>
+      <h1>王氏羊肉串</h1>
+      <p class="sub">按新疆羊肉串思路做：肉块要均匀、先盐后辣、孜然后撒、猛火快烤，外焦香内多汁。</p>
+      <span class="tag">署名：王氏羊肉串</span>
+    </section>
+
+    <section class="gallery">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Barbecued%20lamb%20sticks.jpg" alt="羊肉串烤制图" loading="lazy" />
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/%E6%96%B0%E7%96%86%E7%BE%8A%E8%82%89%E4%B8%B2.jpg" alt="新疆羊肉串" loading="lazy" />
+    </section>
+
+    <section class="two">
+      <article class="panel">
+        <h2>配料（4-5人）</h2>
+        <ul>
+          <li>羊腿肉或羊后臀肉 1kg（肥瘦 8:2）</li>
+          <li>洋葱丝 1 个（去腥增香）</li>
+          <li>盐 12-14g</li>
+          <li>孜然粒 10g + 孜然粉 6g</li>
+          <li>辣椒面 8-12g（按辣度调整）</li>
+          <li>白胡椒粉 2g、少量食用油</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h2>前处理</h2>
+        <ol>
+          <li>羊肉切 2.5-3cm 小方块，尽量大小一致。</li>
+          <li>加盐、白胡椒、洋葱丝抓匀，冷藏腌 30-90 分钟。</li>
+          <li>穿串时肥瘦间隔，避免全瘦肉导致发柴。</li>
+          <li>炭火分两区：强火区上色，次强火区走熟。</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>新疆羊肉串烤制步骤</h2>
+      <ol>
+        <li>先在强火区快速翻烤 30-45 秒，让表面定型并出油。</li>
+        <li>转次强火区继续烤，期间高频翻面，避免单面过焦。</li>
+        <li>七成熟时先撒盐，再撒孜然粒，最后撒辣椒面。</li>
+        <li>回强火区再烤 15-25 秒，逼出香味后立刻离火。</li>
+        <li>离火静置 30-60 秒再吃，肉汁更稳。</li>
+      </ol>
+    </section>
+
+    <section class="author">
+      <div>
+        <div><strong>出品署名：</strong>王氏羊肉串</div>
+        <div class="mono">Fusioneer Leo</div>
       </div>
+      <div>网页制作：Fusioneer Leo（图形学工程师）</div>
     </section>
 
-    <section class="grid">
-      <article class="card">
-        <h2>1. 选肉</h2>
-        <p>新手优先：鸡腿肉、五花、牛小排。油脂足、容错高，不容易烤柴。</p>
-      </article>
-      <article class="card">
-        <h2>2. 控火</h2>
-        <p>分“高温区 + 保温区”。高温上色，保温区走熟，避免外焦内生。</p>
-      </article>
-      <article class="card">
-        <h2>3. 调味</h2>
-        <p>基础三件套：盐、黑胡椒、蒜粉。辣椒和孜然放后段，香味更立。</p>
-      </article>
-      <article class="card">
-        <h2>4. 出炉</h2>
-        <p>离火后静置 3-5 分钟再切。汁水回流，口感明显更嫩。</p>
-      </article>
-    </section>
-
-    <section class="cta">
-      <strong>今晚菜单建议：</strong>鸡腿串 + 五花 + 玉米 + 彩椒。先烤蔬菜熟悉火候，再上肉。
-      <br>
-      <a class="btn" href="#" onclick="alert('点火成功。祝你今晚出片又出香。')">点火开烤</a>
-    </section>
-
-    <div class="footer">Made in C:\Projects\Web · 静态单页，可直接部署到 GitHub Pages / Netlify</div>
+    <div class="foot">图片来源：Wikimedia Commons（在线直链）</div>
   </div>
 </body>
 </html>
