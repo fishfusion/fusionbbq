@@ -1,0 +1,135 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>雇佣烧烤师杨阿兰</title>
+  <style>
+    :root {
+      --red: #e31b23;
+      --black: #151515;
+      --bg: #f7f7f7;
+      --line: #e7e7e7;
+      --text: #222;
+      --muted: #666;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .topbar {
+      background: var(--black);
+      color: #fff;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .brand { font-weight: 800; letter-spacing: .04em; }
+    .brand b { color: var(--red); }
+    .wrap {
+      max-width: 920px;
+      margin: 26px auto;
+      padding: 0 20px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.05);
+    }
+    h1 { margin: 0 0 8px; font-size: clamp(28px, 4.2vw, 46px); }
+    .subtitle { color: var(--muted); margin: 0 0 20px; }
+    .chef-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 6px 0 16px;
+    }
+    .chef-gallery img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fafafa;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+    .price {
+      margin: 16px 0 20px;
+      display: inline-block;
+      border: 1px solid #ffd1d2;
+      background: #fff4f4;
+      color: #b50006;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 700;
+    }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 8px 0; }
+    .cta {
+      margin-top: 22px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      color: #222;
+      background: #fff;
+    }
+    .btn.primary {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+    @media (max-width: 760px) {
+      .chef-gallery { grid-template-columns: 1fr; }
+      .chef-gallery img { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand"><b>WANG'S</b> BBQ SERVICE</div>
+    <a href="./index.html" style="color:#fff;">返回菜谱</a>
+  </div>
+
+  <main class="wrap">
+    <section class="card">
+      <h1>雇佣烧烤师杨阿兰</h1>
+      <p class="subtitle">适用于家庭聚会、朋友派对、公司户外活动等中式烧烤场景。</p>
+
+      <div class="chef-gallery">
+        <img src="./alan1.jpg" alt="杨阿兰师傅照片 1" loading="lazy" />
+        <img src="./alan2.jpg" alt="杨阿兰师傅照片 2" loading="lazy" />
+      </div>
+
+      <div class="price">费用：500 澳币 / 小时</div>
+
+      <ul>
+        <li>服务内容：现场备料、控火、烤制、出餐节奏管理。</li>
+        <li>擅长菜品：新疆羊肉串、蜜汁鸡翅、蒜蓉生蚝、烤茄子等。</li>
+        <li>建议时长：2-4 小时（按活动人数与菜品复杂度调整）。</li>
+        <li>预约说明：请至少提前 3 天预约，节假日建议提前 7 天。</li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn primary" href="mailto:you@example.com?subject=预约杨阿兰烧烤师服务">立即预约</a>
+        <a class="btn" href="./index.html">查看菜谱</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

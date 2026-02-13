@@ -24,6 +24,22 @@
       font-family: "Noto Sans SC", sans-serif;
       color: var(--text);
       background: var(--bg);
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      right: -140px;
+      top: -160px;
+      border-radius: 999px;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(227, 27, 35, 0.18) 0%, rgba(227, 27, 35, 0) 65%);
+      filter: blur(2px);
+      animation: auraDrift 10s ease-in-out infinite alternate;
+      z-index: 0;
     }
     .topbar {
       background: var(--black);
@@ -34,6 +50,10 @@
       justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      animation: slideDown .7s cubic-bezier(.2,.7,.2,1);
     }
     .brand {
       font-family: "Montserrat", sans-serif;
@@ -41,7 +61,7 @@
       font-weight: 800;
     }
     .brand b { color: var(--red); }
-    .container { max-width: 1120px; margin: 0 auto; padding: 20px; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
     .hero {
       background: linear-gradient(140deg, #fff 0%, #fff 65%, #f0f0f0 100%);
@@ -51,6 +71,7 @@
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       min-height: 300px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05);
     }
     .hero-content { padding: 30px; }
     .eyebrow {
@@ -65,6 +86,12 @@
       font-family: "Montserrat", sans-serif;
       font-size: clamp(28px, 5vw, 50px);
       line-height: 1.05;
+      background: linear-gradient(110deg, #111 20%, #222 40%, #555 50%, #222 60%, #111 80%);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: titleShine 4.8s linear infinite;
     }
     .hero p { color: var(--muted); max-width: 560px; }
     .hero-meta {
@@ -79,7 +106,7 @@
       font-size: 13px;
     }
     .hero-image {
-      background-image: url("https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1400&q=80");
+      background-image: url("https://loremflickr.com/1400/900/chinese,bbq,grill?lock=88");
       background-size: cover;
       background-position: center;
     }
@@ -104,9 +131,13 @@
       padding: 8px 14px;
       font-size: 13px;
       cursor: pointer;
-      transition: .2s;
+      transition: transform .2s, border-color .2s, box-shadow .2s, background .2s;
     }
-    .chip:hover { border-color: #d0d0d0; }
+    .chip:hover {
+      border-color: #d0d0d0;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
     .chip.active {
       background: var(--red);
       color: #fff;
@@ -155,6 +186,12 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: #f2c9cb;
+      box-shadow: 0 14px 28px rgba(227, 27, 35, 0.14);
     }
     .card img {
       width: 100%;
@@ -193,6 +230,30 @@
       flex-wrap: wrap;
       gap: 10px;
     }
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px) scale(.99);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes titleShine {
+      from { background-position: 0% 50%; }
+      to { background-position: 220% 50%; }
+    }
+    @keyframes auraDrift {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to { transform: translate3d(-18px, 20px, 0) scale(1.08); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
 
     @media (max-width: 900px) {
       .hero, .featured { grid-template-columns: 1fr; }
@@ -203,11 +264,14 @@
 <body>
   <div class="topbar">
     <div class="brand"><b>WANG'S</b> BBQ RECIPES</div>
-    <div>署名：王氏羊肉串 | Fusioneer Leo</div>
+    <div>
+      署名：王氏羊肉串 | Fusioneer Leo |
+      <a href="./hire.html" style="color:#fff;text-decoration:underline;">雇佣烧烤师</a>
+    </div>
   </div>
 
   <div class="container">
-    <section class="hero">
+    <section class="hero reveal">
       <div class="hero-content">
         <div class="eyebrow">A Recipe For Every Grill Night</div>
         <h1>中式烧烤 Recipes</h1>
@@ -217,8 +281,8 @@
       <div class="hero-image" aria-label="中式烧烤主视觉"></div>
     </section>
 
-    <h2 class="section-title">选择分类</h2>
-    <div class="chips" id="chips">
+    <h2 class="section-title reveal">选择分类</h2>
+    <div class="chips reveal" id="chips">
       <button class="chip active" data-filter="all">全部 Recipes</button>
       <button class="chip" data-filter="串类">串类</button>
       <button class="chip" data-filter="肉类">肉类</button>
@@ -227,8 +291,8 @@
       <button class="chip" data-filter="主食">主食</button>
     </div>
 
-    <section class="featured">
-      <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1400&q=80" alt="新疆羊肉串" loading="lazy" />
+    <section class="featured reveal">
+      <img src="https://loremflickr.com/1400/900/lamb,skewer,grill?lock=11" alt="新疆羊肉串" loading="lazy" />
       <div class="featured-content">
         <div class="badge">Featured Recipe</div>
         <h2 style="margin:0 0 8px;">王氏新疆羊肉串</h2>
@@ -246,10 +310,10 @@
       </div>
     </section>
 
-    <h2 class="section-title">所有菜谱</h2>
+    <h2 class="section-title reveal">所有菜谱</h2>
     <section class="grid" id="grid">
-      <article class="card" data-category="串类 肉类">
-        <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=1200&q=80" alt="孜然牛肉串" loading="lazy" />
+      <article class="card reveal" data-category="串类 肉类">
+        <img src="https://loremflickr.com/1200/800/beef,skewer,grill?lock=12" alt="孜然牛肉串" loading="lazy" />
         <div class="card-body">
           <h3>孜然牛肉串</h3>
           <div class="small">串类 / 肉类 · 20 分钟</div>
@@ -257,8 +321,8 @@
         </div>
       </article>
 
-      <article class="card" data-category="肉类">
-        <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=1200&q=80" alt="蜜汁鸡翅" loading="lazy" />
+      <article class="card reveal" data-category="肉类">
+        <img src="https://loremflickr.com/1200/800/chicken,wings,grill?lock=13" alt="蜜汁鸡翅" loading="lazy" />
         <div class="card-body">
           <h3>蜜汁蒜香鸡翅</h3>
           <div class="small">肉类 · 35 分钟</div>
@@ -266,8 +330,8 @@
         </div>
       </article>
 
-      <article class="card" data-category="海鲜">
-        <img src="https://images.unsplash.com/photo-1559847844-d721426d6edc?auto=format&fit=crop&w=1200&q=80" alt="蒜蓉生蚝" loading="lazy" />
+      <article class="card reveal" data-category="海鲜">
+        <img src="https://loremflickr.com/1200/800/oyster,grill,seafood?lock=14" alt="蒜蓉生蚝" loading="lazy" />
         <div class="card-body">
           <h3>蒜蓉生蚝</h3>
           <div class="small">海鲜 · 18 分钟</div>
@@ -275,8 +339,8 @@
         </div>
       </article>
 
-      <article class="card" data-category="蔬菜">
-        <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1200&q=80" alt="蒜蓉烤茄子" loading="lazy" />
+      <article class="card reveal" data-category="蔬菜">
+        <img src="https://loremflickr.com/1200/800/eggplant,grill,vegetable?lock=15" alt="蒜蓉烤茄子" loading="lazy" />
         <div class="card-body">
           <h3>蒜蓉烤茄子</h3>
           <div class="small">蔬菜 · 22 分钟</div>
@@ -284,8 +348,8 @@
         </div>
       </article>
 
-      <article class="card" data-category="肉类 串类">
-        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=1200&q=80" alt="五花肉串" loading="lazy" />
+      <article class="card reveal" data-category="肉类 串类">
+        <img src="https://loremflickr.com/1200/800/pork,skewer,grill?lock=16" alt="五花肉串" loading="lazy" />
         <div class="card-body">
           <h3>脆边五花肉串</h3>
           <div class="small">串类 / 肉类 · 24 分钟</div>
@@ -293,8 +357,8 @@
         </div>
       </article>
 
-      <article class="card" data-category="蔬菜">
-        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="锡纸金针菇" loading="lazy" />
+      <article class="card reveal" data-category="蔬菜">
+        <img src="https://loremflickr.com/1200/800/enoki,mushroom,food?lock=17" alt="锡纸金针菇" loading="lazy" />
         <div class="card-body">
           <h3>锡纸金针菇</h3>
           <div class="small">蔬菜 · 15 分钟</div>
@@ -302,8 +366,8 @@
         </div>
       </article>
 
-      <article class="card" data-category="主食">
-        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80" alt="烤馒头片" loading="lazy" />
+      <article class="card reveal" data-category="主食">
+        <img src="https://loremflickr.com/1200/800/bread,toast,grill?lock=18" alt="烤馒头片" loading="lazy" />
         <div class="card-body">
           <h3>椒盐烤馒头片</h3>
           <div class="small">主食 · 12 分钟</div>
@@ -311,8 +375,8 @@
         </div>
       </article>
 
-      <article class="card" data-category="海鲜">
-        <img src="https://images.unsplash.com/photo-1559742811-822873691df8?auto=format&fit=crop&w=1200&q=80" alt="烤鱿鱼" loading="lazy" />
+      <article class="card reveal" data-category="海鲜">
+        <img src="https://loremflickr.com/1200/800/squid,grill,seafood?lock=19" alt="烤鱿鱼" loading="lazy" />
         <div class="card-body">
           <h3>炭烤鱿鱼</h3>
           <div class="small">海鲜 · 16 分钟</div>
@@ -321,7 +385,7 @@
       </article>
     </section>
 
-    <div class="footer">
+    <div class="footer reveal">
       <span>风格参考：Weber Recipes 页面（分类 + Featured + 卡片列表）</span>
       <span>署名：王氏羊肉串 · Fusioneer Leo</span>
     </div>
@@ -330,6 +394,18 @@
   <script>
     const chips = document.querySelectorAll('.chip');
     const cards = document.querySelectorAll('.card');
+    const revealNodes = document.querySelectorAll('.reveal');
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    revealNodes.forEach((node) => io.observe(node));
 
     chips.forEach((chip) => {
       chip.addEventListener('click', () => {
