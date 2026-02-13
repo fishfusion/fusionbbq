@@ -44,6 +44,7 @@
       padding: 24px;
       box-shadow: 0 10px 30px rgba(0,0,0,.05);
     }
+    .card + .card { margin-top: 16px; }
     h1 { margin: 0 0 8px; font-size: clamp(28px, 4.2vw, 46px); }
     .subtitle { color: var(--muted); margin: 0 0 20px; }
     .chef-gallery {
@@ -94,6 +95,15 @@
       border-color: var(--red);
       color: #fff;
     }
+    .teaching {
+      border: 1px solid #ffd7b8;
+      background: linear-gradient(120deg, #fff8f1, #fff);
+      border-radius: 10px;
+      padding: 12px;
+      color: #6b3700;
+      font-size: 14px;
+      margin: 12px 0;
+    }
     @media (max-width: 760px) {
       .chef-gallery { grid-template-columns: 1fr; }
       .chef-gallery img { height: 220px; }
@@ -128,6 +138,35 @@
       <div class="cta">
         <a class="btn primary" href="mailto:you@example.com?subject=预约杨阿兰烧烤师服务">立即预约</a>
         <a class="btn" href="./index.html">查看菜谱</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h1>马师傅烧烤教学课</h1>
+      <p class="subtitle">面向想系统掌握烧烤的人群，含从备料到出餐的完整教学流程。</p>
+
+      <div class="chef-gallery">
+        <img src="./ma1.jpg" alt="马师傅教学照片 1" loading="lazy" />
+        <img src="./ma2.jpg" alt="马师傅教学照片 2" loading="lazy" />
+      </div>
+
+      <div class="price">全套课程：20000 澳币</div>
+
+      <div class="teaching">
+        传说级“烤神导师”马师傅，控火像在写算法，调味像在做精密标定；一节课把新手带到能独立开局，
+        两节课就能把出品稳定性拉到职业线。讲解细到每一次翻串角度和火面切换时机，学完就是“开火即出片”。
+      </div>
+
+      <ul>
+        <li>课程模块：火候系统、腌制逻辑、出品节奏、多人局控场。</li>
+        <li>适合对象：家庭玩家、聚会主理人、想进阶商业出摊的人。</li>
+        <li>授课形式：1 对 1 或小班（2-4 人）实操教学。</li>
+        <li>课后支持：提供菜品模板与复盘建议。</li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn primary" href="mailto:you@example.com?subject=预约马师傅烧烤教学课">预约马师傅教学课</a>
+        <a class="btn" href="./index.html">返回菜谱首页</a>
       </div>
     </section>
   </main>
