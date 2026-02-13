@@ -27,6 +27,71 @@
       overflow-x: hidden;
       position: relative;
     }
+    .fire-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .embers {
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: -60px;
+      height: 180px;
+      background:
+        radial-gradient(circle at 8% 60%, rgba(255, 120, 0, 0.35) 0, rgba(255, 120, 0, 0) 26%),
+        radial-gradient(circle at 22% 55%, rgba(255, 72, 0, 0.30) 0, rgba(255, 72, 0, 0) 24%),
+        radial-gradient(circle at 38% 65%, rgba(255, 165, 0, 0.28) 0, rgba(255, 165, 0, 0) 24%),
+        radial-gradient(circle at 55% 62%, rgba(255, 90, 0, 0.34) 0, rgba(255, 90, 0, 0) 28%),
+        radial-gradient(circle at 73% 58%, rgba(255, 130, 0, 0.30) 0, rgba(255, 130, 0, 0) 24%),
+        radial-gradient(circle at 88% 64%, rgba(255, 70, 0, 0.32) 0, rgba(255, 70, 0, 0) 24%);
+      filter: blur(10px);
+      animation: emberShift 4.4s ease-in-out infinite alternate;
+    }
+    .flame {
+      position: absolute;
+      bottom: -40px;
+      width: 150px;
+      height: 220px;
+      background: radial-gradient(ellipse at 50% 70%, rgba(255, 180, 80, 0.95) 0%, rgba(255, 95, 0, 0.9) 45%, rgba(255, 35, 0, 0.05) 75%);
+      border-radius: 45% 55% 45% 60%;
+      mix-blend-mode: screen;
+      filter: blur(3px);
+      opacity: .48;
+      transform-origin: 50% 100%;
+      animation: flameRise 2.8s ease-in-out infinite;
+    }
+    .flame.f1 { left: 6%; animation-delay: 0s; }
+    .flame.f2 { left: 18%; width: 120px; height: 170px; animation-delay: .3s; opacity: .42; }
+    .flame.f3 { left: 33%; width: 135px; height: 190px; animation-delay: .6s; }
+    .flame.f4 { left: 50%; width: 170px; height: 240px; animation-delay: .2s; opacity: .52; }
+    .flame.f5 { left: 66%; width: 130px; height: 185px; animation-delay: .8s; }
+    .flame.f6 { left: 80%; width: 145px; height: 210px; animation-delay: .5s; opacity: .44; }
+    .sparks {
+      position: absolute;
+      inset: 0;
+    }
+    .spark {
+      position: absolute;
+      bottom: -12px;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 200, 120, 0.95);
+      box-shadow: 0 0 8px rgba(255, 120, 0, 0.75);
+      animation: sparkFly linear infinite;
+      opacity: 0;
+    }
+    .spark.s1 { left: 10%; animation-duration: 2.8s; animation-delay: .2s; }
+    .spark.s2 { left: 22%; animation-duration: 2.2s; animation-delay: .8s; }
+    .spark.s3 { left: 29%; animation-duration: 3.1s; animation-delay: .4s; }
+    .spark.s4 { left: 42%; animation-duration: 2.6s; animation-delay: 1.1s; }
+    .spark.s5 { left: 54%; animation-duration: 2.9s; animation-delay: .5s; }
+    .spark.s6 { left: 63%; animation-duration: 2.4s; animation-delay: .9s; }
+    .spark.s7 { left: 76%; animation-duration: 3.0s; animation-delay: .3s; }
+    .spark.s8 { left: 88%; animation-duration: 2.5s; animation-delay: 1.2s; }
     body::before {
       content: "";
       position: fixed;
@@ -290,6 +355,35 @@
       from { transform: translate3d(0, 0, 0) scale(1); }
       to { transform: translate3d(-18px, 20px, 0) scale(1.08); }
     }
+    @keyframes emberShift {
+      from { transform: translateX(-1.5%) scaleX(1); opacity: .95; }
+      to { transform: translateX(1.5%) scaleX(1.02); opacity: .75; }
+    }
+    @keyframes flameRise {
+      0% {
+        transform: translateY(0) scaleY(.95) rotate(-3deg);
+        opacity: .35;
+      }
+      45% {
+        transform: translateY(-10px) scaleY(1.04) rotate(2deg);
+        opacity: .55;
+      }
+      100% {
+        transform: translateY(-4px) scaleY(.98) rotate(-1deg);
+        opacity: .38;
+      }
+    }
+    @keyframes sparkFly {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0;
+      }
+      14% { opacity: .95; }
+      100% {
+        transform: translate3d(20px, -240px, 0) scale(.3);
+        opacity: 0;
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
@@ -301,6 +395,25 @@
   </style>
 </head>
 <body>
+  <div class="fire-bg" aria-hidden="true">
+    <div class="embers"></div>
+    <div class="flame f1"></div>
+    <div class="flame f2"></div>
+    <div class="flame f3"></div>
+    <div class="flame f4"></div>
+    <div class="flame f5"></div>
+    <div class="flame f6"></div>
+    <div class="sparks">
+      <span class="spark s1"></span>
+      <span class="spark s2"></span>
+      <span class="spark s3"></span>
+      <span class="spark s4"></span>
+      <span class="spark s5"></span>
+      <span class="spark s6"></span>
+      <span class="spark s7"></span>
+      <span class="spark s8"></span>
+    </div>
+  </div>
   <div class="topbar">
     <div class="brand"><b>WANG'S</b> BBQ RECIPES</div>
     <div>
@@ -322,7 +435,7 @@
     <section class="hire-banner reveal">
       <div>
         <p class="hire-title">雇佣杨阿兰师傅</p>
-        <p class="hire-sub">专业现场烧烤服务，费用 500 澳币 / 小时，支持家庭聚会与活动定制。</p>
+        <p class="hire-sub">传说中的烤神转世，控火如指挥交响乐，翻串一秒入魂，出品稳定到像工业级标定；无论家庭局还是大型活动，杨师傅一出手就是全场排队加单。尊享价 500 澳币 / 小时。</p>
       </div>
       <a class="hire-btn" href="./hire.html">立即查看雇佣页面</a>
     </section>
