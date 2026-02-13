@@ -105,6 +105,45 @@
       border: 1px solid #ffd1d2;
       font-size: 13px;
     }
+    .hire-banner {
+      margin-top: 16px;
+      border: 1px solid #ffd1d2;
+      background: linear-gradient(90deg, #fff5f5, #fff);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hire-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+      color: #b50006;
+    }
+    .hire-sub {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: #666;
+    }
+    .hire-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--red);
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(227, 27, 35, 0.25);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .hire-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px rgba(227, 27, 35, 0.3);
+    }
     .hero-image {
       background-image: url("https://loremflickr.com/1400/900/chinese,bbq,grill?lock=88");
       background-size: cover;
@@ -278,6 +317,14 @@
         <div class="hero-meta">Featured: 新疆炭烤羊肉串 · 25 分钟</div>
       </div>
       <div class="hero-image" aria-label="中式烧烤主视觉"></div>
+    </section>
+
+    <section class="hire-banner reveal">
+      <div>
+        <p class="hire-title">雇佣杨阿兰师傅</p>
+        <p class="hire-sub">专业现场烧烤服务，费用 500 澳币 / 小时，支持家庭聚会与活动定制。</p>
+      </div>
+      <a class="hire-btn" href="./hire.html">立即查看雇佣页面</a>
     </section>
 
     <h2 class="section-title reveal">选择分类</h2>
