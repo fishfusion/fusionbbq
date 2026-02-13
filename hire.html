@@ -57,10 +57,14 @@
       width: 100%;
       height: 260px;
       object-fit: cover;
+      object-position: center center;
       border-radius: 10px;
       border: 1px solid var(--line);
       background: #fafafa;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+    .chef-gallery img.ma2-face {
+      object-position: center top;
     }
     .price {
       margin: 16px 0 20px;
@@ -147,7 +151,7 @@
 
       <div class="chef-gallery">
         <img src="./ma1.jpg" alt="马师傅教学照片 1" loading="lazy" />
-        <img src="./ma2.jpg" alt="马师傅教学照片 2" loading="lazy" />
+        <img class="ma2-face" src="./ma2.jpg" alt="马师傅教学照片 2" loading="lazy" />
       </div>
 
       <div class="price">全套课程：20000 澳币</div>
